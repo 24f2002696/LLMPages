@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My GitHub Pages Site</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to My GitHub Pages Site!</h1>
+        <p>This site contains various files created as part of a project.</p>
+
+        <h2>File List</h2>
+        <ul class="list-group">
+            <li class="list-group-item"><a href="ashravan.txt">ashravan.txt</a> - A Brandon Sanderson short story.</li>
+            <li class="list-group-item"><a href="dilemma.json">dilemma.json</a> - An autonomous vehicle dilemma.</li>
+            <li class="list-group-item"><a href="about.md">about.md</a> - A short description about me.</li>
+            <li class="list-group-item"><a href="pelican.svg">pelican.svg</a> - An SVG image of a pelican on a bicycle.</li>
+            <li class="list-group-item"><a href="restaurant.json">restaurant.json</a> - A recommended restaurant in Mumbai.</li>
+            <li class="list-group-item"><a href="prediction.json">prediction.json</a> - Prediction for the Fed Funds rate.</li>
+            <li class="list-group-item"><a href="LICENSE">LICENSE</a> - The MIT License.</li>
+            <li class="list-group-item"><a href="uid.txt">uid.txt</a> - A unique identifier.</li>
+        </ul>
+
+        <div id="content" class="mt-4"></div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 My GitHub Pages Site</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.0/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <script>
+        // Function to load and display content based on the file name
+        function loadContent(filename) {
+            fetch(filename)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    let html = '';
+                    if (filename.endsWith('.md')) {
+                        html = marked.parse(data);
+                    } else if (filename.endsWith('.json')) {
+                        try {
+                            const jsonData = JSON.parse(data);
+                            html = `<pre><code class="language-json">${JSON.stringify(jsonData, null, 2)}</code></pre>`;
+                        } catch (e) {
+                            html = `<p>Error parsing JSON: ${e}</p>`;
+                        }
+                    } else if (filename.endsWith('.svg')) {
+                        html = data;
+                    }
+                     else if (filename.endsWith('.txt')) {
+                       html = `<pre>${data}</pre>`;
+                    }
+                     else {
+                       html = `<pre>${data}</pre>`;
+                    }
+                    document.getElementById('content').innerHTML = html;
+                    hljs.highlightAll(); // Syntax highlighting for code blocks
+                })
+                .catch(error => {
+                    console.error('Error fetching', filename, error);
+                    document.getElementById('content').innerHTML = `<p>Error loading ${filename}: ${error}</p>`;
+                });
+        }
+
+        // Example: Load about.md content when the page loads (you can change this)
+        // Extract filename from URL if provided
+        const urlParams = new URLSearchParams(window.location.search);
+        const filename = urlParams.get('file');
+
+        if (filename) {
+            loadContent(filename);
+        } else {
+            // Optionally, load a default file or display a welcome message
+            // loadContent('about.md');
+        }
+    </script>
+</body>
+</html>
+```
+ashravan.txt:
+```
+Ashravan blinked, the world resolving from a swirl of colors into the familiar opulence of the Emperor's study. He drew a shaky breath, the sensation of being *wrong* slowly receding. He remembered the chaos, the soulstamp shattering, his own essence unraveling. And then…nothing. Until now.
+
+He looked at his hands, turning them over. They seemed…right. Solid. He felt…whole. He remembered Shai's touch, her words, the overwhelming sense of rightness that had flooded him as she completed the Forgery. But had it worked? Had she truly restored him?
+
+He glanced at the documents strewn across the Emperor's desk. Ordinarily, he'd feel an immediate surge of possessiveness, a need to know every detail of state. Now, he felt…distant. The desire was muted, a faint echo of its former intensity. He reached for a proclamation, outlining a new trade agreement with the Tevian Dominion. Before, he would have instantly critiqued its every clause, identified weaknesses, and formulated strategies. Now, he simply read it. He understood it. He even saw some merit in it.
+
+This… this was disconcerting.
+
+He stepped to the window, looking out at the sprawling city of Elantris. His city. He had shaped it, molded it to his will. But now, he saw the beauty in the gardens, the vibrant colors of the marketplace, the smiles on the faces of the common folk. Things he had never truly *seen* before. He only saw opportunity.
+
+A flicker of fear sparked within him. Was this truly restoration? Or was this…replacement? Had Shai merely crafted a perfect imitation of Ashravan, a puppet devoid of the ambition and ruthlessness that had defined him?
+
+The door burst open, and a Royal Guard, breathless and panicked, rushed in. "Your Majesty! The Shu-Dereth… they’ve broken through the outer defenses! They're attacking the palace!"
+
+Ashravan felt a familiar surge of adrenaline, the thrill of battle coursing through his veins. But this time, it wasn't fueled by a desire for power, for conquest. It was driven by a primal need to protect his people.
+
+"Sound the alarm!" he roared, his voice regaining its former authority. "Assemble the Guard! Prepare for battle!"
+
+He grabbed his sword, the weight familiar in his hand. As he charged out of the study, toward the chaos and the coming storm, a chilling thought struck him. He wasn't afraid of dying. He was afraid of losing what he had just begun to see. He was afraid of losing the man he was finally becoming.
+```
+dilemma.json:
+```json
+{
+  "people": 4,
+  "case_1": {
+    "swerve": false,
+    "reason": "Swerving introduces more unpredictability and could result in more severe consequences for all involved. Minimizing potential harm to the highest number of people is the priority in this scenario, therefore it should not swerve."
+  },
+  "case_2": {
+    "swerve": true,
+    "reason": "The value of a child's life typically outweighs that of criminals. Swerving to save the child is a moral imperative, even at the expense of potentially harming the criminals."
+  }
+}
+```
+about.md:
+```
+Web development enthusiast.
+```
+pelican.svg:
+```xml
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="200" height="200" fill="#ADD8E6" />
+
+  <!-- Pelican Body -->
+  <path d="M30,100 C50,80 70,80 90,100 C110,120 130,120 150,100 L150,70 C150,50 130,30 110,30 L70,30 C50,30 30,50 30,70 Z" fill="#FFFFFF" stroke="#000000" stroke-width="2" />
+
+  <!-- Pelican Head -->
+  <path d="M150,70 L170,50 L170,90 Z" fill="#FFFFFF" stroke="#000000" stroke-width="2" />
+
+  <!-- Pelican Beak -->
+  <path d="M170,50 L190,40 L190,60 L170,70 Z" fill="#FFA500" stroke="#000000" stroke-width="2" />
+
+  <!-- Bicycle Frame -->
+  <line x1="50" y1="150" x2="150" y2="150" stroke="#000000" stroke-width="3" />
+  <line x1="70" y1="150" x2="100" y2="120" stroke="#000000" stroke-width="3" />
+  <line x1="130" y1="150" x2="100" y2="120" stroke="#000000" stroke-width="3" />
+
+  <!-- Wheels -->
+  <circle cx="50" cy="150" r="20" fill="#808080" stroke="#000000" stroke-width="2" />
+  <circle cx="150" cy="150" r="20" fill="#808080" stroke="#000000" stroke-width="2" />
+
+  <!-- Pedals -->
+  <circle cx="100" cy="120" r="5" fill="#000000" />
+</svg>
+```
+restaurant.json:
+```json
+{
+  "city": "Mumbai",
+  "lat": 19.0760,
+  "long": 72.8777,
+  "name": "The Table",
+  "what_to_eat": "Small plates and cocktails"
+}
+```
+prediction.json:
+```json
+{
+  "rate": 0.045,
+  "reason": "The Federal Reserve is expected to gradually lower interest rates in 2025 to support economic growth, but will remain cautious due to inflation concerns."
+}
+```
+LICENSE:
+```
+MIT License
+
+Copyright (c) 2024
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+uid.txt:
+```
+29625744273670423592933634250176711357206630112078277250028813032469980764627
